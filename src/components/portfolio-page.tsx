@@ -122,7 +122,7 @@ type FieldErrors = Partial<Record<keyof ContactFields, string>>;
 function SectionHeading({ eyebrow, title, intro }: { eyebrow: string; title: string; intro?: string }) {
   return (
     <div className="mb-10 max-w-2xl md:mb-14">
-      <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+      <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase text-primary">
         <span className="h-px w-8 bg-primary" aria-hidden="true" />
         {eyebrow}
       </p>
@@ -198,7 +198,7 @@ function Hero() {
     <section id="home" className="relative scroll-mt-24 overflow-hidden border-b border-border bg-hero">
       <div className="mx-auto grid min-h-[calc(100vh-4.5rem)] max-w-7xl items-center gap-14 px-5 py-16 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-20">
         <div className="relative z-10 max-w-3xl animate-rise">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/70 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary">
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/70 px-4 py-2 text-xs font-bold uppercase text-primary">
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
             Personal portfolio · South Africa
           </p>
@@ -226,7 +226,7 @@ function Hero() {
             <div className="absolute inset-0 grid place-items-center">
               <div className="text-center">
                 <span className="block font-display text-[8rem] leading-none text-primary-foreground sm:text-[10rem]">RT</span>
-                <span className="mt-5 inline-block border-y border-primary-foreground/35 py-2 text-xs font-bold uppercase tracking-[0.22em] text-primary-foreground">Technology · Growth · Creativity</span>
+                <span className="mt-5 inline-block border-y border-primary-foreground/35 py-2 text-xs font-bold uppercase text-primary-foreground">Technology · Growth · Creativity</span>
               </div>
             </div>
             <div className="absolute bottom-8 left-8 right-8 grid grid-cols-[1fr_auto] items-end gap-4 border-t border-primary-foreground/30 pt-5 text-primary-foreground">
@@ -236,7 +236,7 @@ function Hero() {
           </div>
           <div className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 shadow-lg sm:-left-8">
             <span className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-primary"><ArrowDown className="h-4 w-4" /></span>
-            <span className="text-xs font-bold uppercase tracking-[0.12em] text-foreground">Actively learning<br />and building</span>
+            <span className="text-xs font-bold uppercase text-foreground">Actively learning<br />and building</span>
           </div>
         </div>
       </div>
@@ -290,7 +290,7 @@ function Projects() {
             <article key={project.number} className="group flex min-h-[31rem] flex-col rounded-xl border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 hover:border-primary/35 md:p-7">
               <div className="mb-8 flex items-start justify-between gap-4">
                 <span className="font-display text-4xl text-primary/35">{project.number}</span>
-                <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${project.placeholder ? "bg-muted text-muted-foreground" : "bg-secondary text-primary"}`}>{project.placeholder ? "Editable placeholder" : "Current project"}</span>
+                <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase ${project.placeholder ? "bg-muted text-muted-foreground" : "bg-secondary text-primary"}`}>{project.placeholder ? "Editable placeholder" : "Current project"}</span>
               </div>
               <h3 className="font-display text-2xl leading-tight text-card-foreground">{project.title}</h3>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">{project.description}</p>
@@ -325,7 +325,7 @@ function Credentials() {
             ].map(([status, title, source]) => (
               <article key={title} className="relative rounded-xl border border-contrast-border bg-contrast-card p-6 md:p-8">
                 <span className="mb-7 grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground ring-8 ring-contrast"><GraduationCap className="h-5 w-5" /></span>
-                <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary-light">{status}</p>
+                <p className="text-xs font-bold uppercase text-primary-light">{status}</p>
                 <h3 className="mt-3 font-display text-2xl">{title}</h3>
                 <p className="mt-2 text-sm text-contrast-muted">{source}</p>
                 <p className="mt-6 border-t border-contrast-border pt-4 text-xs text-contrast-muted">Dates and additional institution details can be added here.</p>
@@ -346,7 +346,7 @@ function Credentials() {
             ].map(([title, source, status]) => (
               <article key={title} className="grid min-h-60 grid-cols-[auto_1fr] gap-5 rounded-xl border border-border bg-card p-6 md:p-8">
                 <div className="grid h-12 w-12 place-items-center rounded-lg bg-secondary text-primary"><Check /></div>
-                <div><p className="text-xs font-bold uppercase tracking-[0.15em] text-primary">{status}</p><h3 className="mt-3 font-display text-2xl">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{source}</p><p className="mt-8 border-t border-border pt-4 text-xs text-muted-foreground">Certificate image and verification link can be added here.</p></div>
+                <div><p className="text-xs font-bold uppercase text-primary">{status}</p><h3 className="mt-3 font-display text-2xl">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{source}</p><p className="mt-8 border-t border-border pt-4 text-xs text-muted-foreground">Certificate image and verification link can be added here.</p></div>
               </article>
             ))}
           </div>
@@ -426,7 +426,7 @@ function Contact() {
         <SectionHeading eyebrow="Contact" title="Let’s start a conversation." intro="Recruiting for a role where curiosity, communication and growth matter? I’d be glad to hear about it." />
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
-            <div className="space-y-3">{contacts.map(([Icon, label, value]) => <div key={label} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 rounded-lg border border-contrast-border bg-contrast-card p-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary-light"><Icon className="h-4 w-4" /></span><div className="min-w-0"><p className="text-xs font-bold uppercase tracking-[0.12em] text-contrast-muted">{label}</p><p className="mt-1 truncate text-sm font-semibold">{value}</p></div></div>)}</div>
+            <div className="space-y-3">{contacts.map(([Icon, label, value]) => <div key={label} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 rounded-lg border border-contrast-border bg-contrast-card p-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary-light"><Icon className="h-4 w-4" /></span><div className="min-w-0"><p className="text-xs font-bold uppercase text-contrast-muted">{label}</p><p className="mt-1 truncate text-sm font-semibold">{value}</p></div></div>)}</div>
             <div className="mt-6"><CvButton /></div>
           </div>
           <form onSubmit={submit} noValidate className="rounded-xl border border-contrast-border bg-contrast-card p-6 md:p-8">
