@@ -23,6 +23,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import resumeAsset from "@/assets/refilwe-resume.pdf.asset.json";
+import fnbCertificateAsset from "@/assets/fnb-app-academy-certificate.pdf.asset.json";
 
 const navigation = [
   ["Home", "home"],
@@ -45,6 +47,9 @@ const technicalSkills = [
   "Computer Literacy",
   "Digital Literacy",
   "Technical Troubleshooting",
+  "Call Centre Operations",
+  "Cash Handling & POS Systems",
+  "Web Content Management",
   "Problem-Solving",
 ];
 
@@ -110,6 +115,48 @@ const strengths = [
   ["04", "A reliable contributor", "I value organisation, professional growth and contributing both independently and as part of a team."],
 ];
 
+const education = [
+  {
+    period: "2010–2016",
+    title: "Grade 12",
+    institution: "Mondeor High School",
+    detail: "Completed secondary education.",
+  },
+  {
+    period: "2025",
+    title: "Certificate in Full Stack Development",
+    institution: "FNB App Academy · Issued by IT Varsity",
+    detail: "Awarded 16 July 2025 · 32 credits",
+  },
+  {
+    period: "In progress",
+    title: "AI Development Skills Programme",
+    institution: "Google and SETA accredited",
+    detail: "Currently developing practical AI development skills.",
+  },
+];
+
+const experience = [
+  {
+    period: "Sep 2023–2025",
+    role: "Inbound & Outbound Call Centre Agent",
+    company: "iBhongo Card Collections (Pty) Ltd",
+    description: "Recovered outstanding accounts, attended to client queries and worked towards collection targets.",
+  },
+  {
+    period: "May 2022–Sep 2023",
+    role: "Web Content Manager",
+    company: "Ceratile",
+    description: "Managed website content, updated product listings, pricing and promotions, and ensured product accuracy.",
+  },
+  {
+    period: "Nov 2019–Dec 2021",
+    role: "Receptionist",
+    company: "DNA Brand Architects",
+    description: "Welcomed and assisted clients and visitors, managed calls and emails, scheduled appointments, maintained records, completed administration and data capturing, handled correspondence and deliveries, and provided professional customer service.",
+  },
+];
+
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name.").max(100, "Please keep your name under 100 characters."),
   email: z.string().trim().email("Please enter a valid email address.").max(255),
@@ -133,30 +180,18 @@ function SectionHeading({ eyebrow, title, intro }: { eyebrow: string; title: str
 }
 
 function CvButton({ compact = false }: { compact?: boolean }) {
-  const [message, setMessage] = useState(false);
   return (
-    <div className="relative">
-      <Button
-        type="button"
+    <Button
+        asChild
         variant={compact ? "outline" : "default"}
         size={compact ? "default" : "lg"}
-        onClick={() => setMessage(true)}
         className={compact ? "border-primary/30 bg-background" : "shadow-lg shadow-primary/15"}
       >
-        <Download aria-hidden="true" />
-        {compact ? "Download CV" : "Download My CV"}
+        <a href={resumeAsset.url} download="Refilwe-Thando-Tladi-Resume.pdf">
+          <Download aria-hidden="true" />
+          {compact ? "Download CV" : "Download My CV"}
+        </a>
       </Button>
-      {message ? (
-        <div role="status" className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-72 rounded-lg border border-border bg-popover p-4 text-sm text-popover-foreground shadow-xl">
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-3">
-            <p><strong>CV placeholder:</strong> connect Refilwe’s real PDF here when it is ready.</p>
-            <button type="button" aria-label="Close CV notice" onClick={() => setMessage(false)} className="h-7 w-7 shrink-0 text-muted-foreground transition-colors hover:text-foreground">
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      ) : null}
-    </div>
   );
 }
 
@@ -317,22 +352,18 @@ function Credentials() {
       <section id="education" className="scroll-mt-24 bg-contrast px-5 py-20 text-contrast-foreground md:py-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Education" title="A foundation for what comes next." />
-          <div className="relative grid gap-6 md:grid-cols-2">
+           <div className="relative grid gap-6 md:grid-cols-3">
             <div className="absolute left-5 top-6 hidden h-px w-[calc(100%-2.5rem)] bg-primary/35 md:block" aria-hidden="true" />
-            {[
-              ["Completed", "Full-Stack Development Certificate", "FNB App Academy"],
-              ["In progress", "AI Development Skills Programme", "Accredited with Google and SETA"],
-            ].map(([status, title, source]) => (
-              <article key={title} className="relative rounded-xl border border-contrast-border bg-contrast-card p-6 md:p-8">
+             {education.map((item) => (
+               <article key={item.title} className="relative rounded-xl border border-contrast-border bg-contrast-card p-6 md:p-8">
                 <span className="mb-7 grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground ring-8 ring-contrast"><GraduationCap className="h-5 w-5" /></span>
-                <p className="text-xs font-bold uppercase text-primary-light">{status}</p>
-                <h3 className="mt-3 font-display text-2xl">{title}</h3>
-                <p className="mt-2 text-sm text-contrast-muted">{source}</p>
-                <p className="mt-6 border-t border-contrast-border pt-4 text-xs text-contrast-muted">Dates and additional institution details can be added here.</p>
+                 <p className="text-xs font-bold uppercase text-primary-light">{item.period}</p>
+                 <h3 className="mt-3 font-display text-2xl">{item.title}</h3>
+                 <p className="mt-2 text-sm font-semibold text-contrast-foreground">{item.institution}</p>
+                 <p className="mt-6 border-t border-contrast-border pt-4 text-xs leading-5 text-contrast-muted">{item.detail}</p>
               </article>
             ))}
           </div>
-          <div className="mt-6 rounded-xl border border-dashed border-contrast-border p-6 text-sm text-contrast-muted">+ Space reserved for additional qualifications, courses and dates.</div>
         </div>
       </section>
 
@@ -346,7 +377,7 @@ function Credentials() {
             ].map(([title, source, status]) => (
               <article key={title} className="grid min-h-60 grid-cols-[auto_1fr] gap-5 rounded-xl border border-border bg-card p-6 md:p-8">
                 <div className="grid h-12 w-12 place-items-center rounded-lg bg-secondary text-primary"><Check /></div>
-                <div><p className="text-xs font-bold uppercase text-primary">{status}</p><h3 className="mt-3 font-display text-2xl">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{source}</p><p className="mt-8 border-t border-border pt-4 text-xs text-muted-foreground">Certificate image and verification link can be added here.</p></div>
+                 <div><p className="text-xs font-bold uppercase text-primary">{status}</p><h3 className="mt-3 font-display text-2xl">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{source}</p>{title === "Full-Stack Development Certificate" ? <><p className="mt-4 text-xs leading-5 text-muted-foreground">Awarded 16 July 2025 · 32 credits · Certificate AOTYAA072025</p><Button asChild variant="outline" className="mt-6"><a href={fnbCertificateAsset.url} target="_blank" rel="noreferrer"><ExternalLink /> View certificate</a></Button></> : <p className="mt-8 border-t border-border pt-4 text-xs text-muted-foreground">Programme currently in progress.</p>}</div>
               </article>
             ))}
           </div>
@@ -360,11 +391,18 @@ function Experience() {
   return (
     <section id="experience" className="scroll-mt-24 px-5 py-20 md:py-28 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="Experience" title="Professional experience, in full context." intro="I prefer to share accurate information rather than fill this space with assumptions." />
-        <div className="grid gap-8 rounded-xl border border-border bg-card p-7 md:grid-cols-[1fr_auto] md:items-center md:p-10">
-          <div className="flex gap-5"><span className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-secondary text-primary"><BriefcaseBusiness /></span><div><h3 className="font-display text-2xl">Explore my CV for a detailed overview of my professional experience.</h3><p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">Job titles, companies, dates, responsibilities and achievements will be added here once the verified information is available.</p></div></div>
-          <CvButton />
+        <SectionHeading eyebrow="Experience" title="Professional experience, in full context." intro="Experience across customer service, call centre operations, web content management and administration." />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {experience.map((item) => (
+            <article key={`${item.company}-${item.role}`} className="flex min-h-80 flex-col rounded-xl border border-border bg-card p-6 md:p-7">
+              <div className="mb-6 flex items-start justify-between gap-4"><span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-secondary text-primary"><BriefcaseBusiness /></span><p className="text-right text-xs font-bold uppercase text-primary">{item.period}</p></div>
+              <h3 className="font-display text-2xl leading-tight">{item.role}</h3>
+              <p className="mt-2 text-sm font-bold text-foreground">{item.company}</p>
+              <p className="mt-5 text-sm leading-6 text-muted-foreground">{item.description}</p>
+            </article>
+          ))}
         </div>
+        <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-7"><p className="text-sm text-muted-foreground">References are available upon request.</p><CvButton /></div>
       </div>
     </section>
   );
@@ -409,15 +447,16 @@ function Contact() {
       return;
     }
     setErrors({});
-    setNotice("Message validated. Add Refilwe’s real email address to activate delivery.");
+    setNotice("Opening your email app…");
+    const subject = encodeURIComponent(`Portfolio enquiry from ${result.data.name}`);
+    const body = encodeURIComponent(`${result.data.message}\n\nFrom: ${result.data.name}\nEmail: ${result.data.email}`);
+    window.location.href = `mailto:Refilwethando2@gmail.com?subject=${subject}&body=${body}`;
   }
 
   const contacts = [
-    [Mail, "Email", "Add email address"],
-    [Phone, "Phone", "Add phone number"],
-    [MapPin, "Location", "Add location"],
-    [Linkedin, "LinkedIn", "Add profile link"],
-    [Github, "GitHub", "Add profile link"],
+    [Mail, "Email", "Refilwethando2@gmail.com", "mailto:Refilwethando2@gmail.com"],
+    [Phone, "Phone", "083 273 0753", "tel:+27832730753"],
+    [MapPin, "Location", "Protea North, Soweto, South Africa", null],
   ] as const;
 
   return (
@@ -426,7 +465,7 @@ function Contact() {
         <SectionHeading eyebrow="Contact" title="Let’s start a conversation." intro="Recruiting for a role where curiosity, communication and growth matter? I’d be glad to hear about it." />
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
-            <div className="space-y-3">{contacts.map(([Icon, label, value]) => <div key={label} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 rounded-lg border border-contrast-border bg-contrast-card p-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary-light"><Icon className="h-4 w-4" /></span><div className="min-w-0"><p className="text-xs font-bold uppercase text-contrast-muted">{label}</p><p className="mt-1 truncate text-sm font-semibold">{value}</p></div></div>)}</div>
+             <div className="space-y-3">{contacts.map(([Icon, label, value, href]) => <div key={label} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 rounded-lg border border-contrast-border bg-contrast-card p-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary-light"><Icon className="h-4 w-4" /></span><div className="min-w-0"><p className="text-xs font-bold uppercase text-contrast-muted">{label}</p>{href ? <a href={href} className="mt-1 block break-words text-sm font-semibold hover:text-primary-light">{value}</a> : <p className="mt-1 text-sm font-semibold">{value}</p>}</div></div>)}</div>
             <div className="mt-6"><CvButton /></div>
           </div>
           <form onSubmit={submit} noValidate className="rounded-xl border border-contrast-border bg-contrast-card p-6 md:p-8">
@@ -436,7 +475,7 @@ function Contact() {
               <label className="text-sm font-semibold sm:col-span-2">Message<Textarea name="message" maxLength={1000} rows={6} placeholder="Tell me about the opportunity…" aria-invalid={Boolean(errors.message)} className="mt-2 border-contrast-border bg-contrast text-contrast-foreground placeholder:text-contrast-muted" />{errors.message ? <span className="mt-1 block text-xs text-primary-light">{errors.message}</span> : null}</label>
             </div>
             <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
-              <p role="status" className="min-w-0 text-xs leading-5 text-contrast-muted">{notice || "Your details are checked in your browser and are not stored."}</p>
+               <p role="status" className="min-w-0 text-xs leading-5 text-contrast-muted">{notice || "Your details are checked in your browser, then your email app will open."}</p>
               <Button type="submit">Send Message <ArrowRight /></Button>
             </div>
           </form>
