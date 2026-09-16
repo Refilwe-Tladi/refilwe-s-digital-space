@@ -196,7 +196,7 @@ function Header() {
 function Hero() {
   return (
     <section id="home" className="relative scroll-mt-24 overflow-hidden border-b border-border bg-hero">
-      <div className="mx-auto grid min-h-[calc(100vh-7.5rem)] max-w-7xl items-center gap-14 px-5 py-16 lg:min-h-[52rem] lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 py-16 lg:min-h-[46rem] lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-14">
         <div className="relative z-10 max-w-3xl animate-rise">
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/70 px-4 py-2 text-xs font-bold uppercase text-primary">
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
